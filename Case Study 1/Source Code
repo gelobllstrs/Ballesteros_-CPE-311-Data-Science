@@ -1,0 +1,27 @@
+# function to get inputs from the user
+
+def userInput():
+    allowance = int(input("Enter the amount of allowance: ")) # total amount of given allowance
+    total_days = int(input("Enter the total number of days: ")) # total number of school days
+    expenses = int(input("Enter the total expenses per day: ")) # total amount of expenses each day
+
+    return allowance, total_days, expenses # return values
+
+# function for computing the allowance per day
+
+def calculateAllowance(allowance, total_days, expenses):
+
+    table = [0] * (total_days + 1) # initialize a list to store the remaining allowance for each day
+    
+    table[0] = allowance # sets the initial amount of allowance as the first element of the list
+    
+    for i in range(1, total_days + 1): # iterates each day until the last day
+        table[i] = table[i - 1] - expenses # calculates the remaining allowance for each day
+         
+    return table[total_days] # returns the remaining allowance after all days
+
+allowance, total_days, expenses = userInput() # call the function userInput() to get inputs from the user
+
+remaining_allowance = calculateAllowance(allowance, total_days, expenses) # create the variable remaining_allowance and calls the function calculateAllowance to compute it
+
+print(f"The remaining amount of money after {total_days} days is: {remaining_allowance}") # print the result
